@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788" systemVersion="24E263" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DocumentEntity" representedClassName="DocumentEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="documentId" optional="YES" attributeType="String"/>
+        <attribute name="fileName" optional="YES" attributeType="String"/>
+        <attribute name="numberOfPages" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <attribute name="timeReceived" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="workflow" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkflowEntity" inverseName="documents" inverseEntity="WorkflowEntity"/>
+    </entity>
+    <entity name="UserEntity" representedClassName="UserEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="password" optional="YES" attributeType="String"/>
+        <attribute name="userApiKey" optional="YES" attributeType="String"/>
+        <attribute name="userEmail" optional="YES" attributeType="String"/>
+        <attribute name="userId" optional="YES" attributeType="String"/>
+        <attribute name="userName" optional="YES" attributeType="String"/>
+        <relationship name="workflows" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkflowEntity" inverseName="user" inverseEntity="WorkflowEntity"/>
+    </entity>
+    <entity name="WorkflowEntity" representedClassName="WorkflowEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="indexingCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="qaCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="rejectedCount" optional="YES" attributeType="String"/>
+        <attribute name="workflowId" optional="YES" attributeType="String"/>
+        <attribute name="workflowName" optional="YES" attributeType="String"/>
+        <relationship name="documents" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DocumentEntity" inverseName="workflow" inverseEntity="DocumentEntity"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="workflows" inverseEntity="UserEntity"/>
+    </entity>
+</model>
